@@ -7,5 +7,5 @@ public interface DAO<T> {
 	public void excluir (T o);
 	public T buscarPorId(int id);
 	public List<T> buscarTodos ();
-	public List<Object[]> buscarTodos2 ();
+	public List<Object[]> buscarTodos2 (); 
 }
