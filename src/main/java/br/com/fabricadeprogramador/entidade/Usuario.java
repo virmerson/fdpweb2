@@ -21,6 +21,16 @@ public class Usuario {
 	@Column(nullable=false, length=10)
 	private String senha;
 	
+	public Usuario() {
+		
+	}
+	
+	public Usuario(String nome, String login, String senha) {
+		super();
+		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
+	}
 	public Integer getId() {
 		return id;
 	}
