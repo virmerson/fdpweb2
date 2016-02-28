@@ -5,29 +5,37 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fabricadeprogramador.entidade.Usuario;
 
+@Repository
 public class UsuarioDAO implements DAO<Usuario> {
-
+	
+	@PersistenceContext
 	private EntityManager em;
 	
 	public UsuarioDAO() {
-		em = EmFactory.getEntityManager();
+		System.out.println("Instanciando...");
 	}
 	
+	@Transactional
 	public void salvar(Usuario usuario){
-		em.getTransaction().begin();
+		
 		em.merge(usuario);
-		em.getTransaction().commit();
 		
 	}
 	
+	@Transactional
 	public void excluir (Usuario usuario){
-		em.getTransaction().begin();
 		em.remove(usuario);
-		em.getTransaction().commit();
 	}
 	
 	public Usuario buscarPorId(int id){

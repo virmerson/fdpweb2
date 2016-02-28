@@ -11,7 +11,7 @@ import br.com.fabricadeprogramador.entidade.Usuario;
 
 public class TestUsuarioDAO {
 	
-	static DAO<Usuario> usuarioDAO = DAOFactory.getDAO("usuariodao");
+	static DAO<Usuario> usuarioDAO ;
 	static DAO<Estado> estadoDAO = DAOFactory.getDAO("estadodao");
 	
 	public static void main(String[] args) {
