@@ -27,10 +27,13 @@ public class UsuarioDAO implements DAO<Usuario> {
 	}
 	
 	@Transactional
-	public void salvar(Usuario usuario){
-		
-		em.merge(usuario);
-		
+	public void salvar(Usuario usuario) throws DAOException{
+		try{
+			em.merge(usuario);
+		}catch (Exception e ){
+			//Lancando exception encapsulando a causa
+			throw new DAOException(e);
+		}
 	}
 	
 	@Transactional

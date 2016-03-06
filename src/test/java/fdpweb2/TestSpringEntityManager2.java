@@ -20,7 +20,7 @@ public class TestSpringEntityManager2 {
 		usuario.setSenha("ssss");
 		usuario.setLogin("xxxx");
 		
-		usuarioDAO.salvar(usuario);
+		//usuarioDAO.salvar(usuario);
 		
 	}
 

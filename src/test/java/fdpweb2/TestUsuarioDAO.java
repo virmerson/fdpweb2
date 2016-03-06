@@ -3,6 +3,7 @@ package fdpweb2;
 import java.util.List;
 
 import br.com.fabricadeprogramador.dao.DAO;
+import br.com.fabricadeprogramador.dao.DAOException;
 import br.com.fabricadeprogramador.dao.DAOFactory;
 import br.com.fabricadeprogramador.dao.EstadoDAO;
 import br.com.fabricadeprogramador.dao.UsuarioDAO;
@@ -25,7 +26,7 @@ public class TestUsuarioDAO {
 		//testExcluir();
 	}
 	
-	public static void testInserir(){
+	public static void testInserir() throws DAOException{
 		usuarioDAO.salvar(new Usuario("Virmerson","vir", "123"));
 	}
 	
@@ -35,7 +36,7 @@ public class TestUsuarioDAO {
 		System.out.println(usuBuscado.getId() +  " " + usuBuscado.getNome() );
 	}
 	
-	public static void testAlterar(){
+	public static void testAlterar() throws DAOException{
 		Usuario usuBuscado = usuarioDAO.buscarPorId(1);
 		usuBuscado.setNome("Zé");
 		usuarioDAO.salvar(usuBuscado);
