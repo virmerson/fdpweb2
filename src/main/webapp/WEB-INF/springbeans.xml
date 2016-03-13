@@ -9,7 +9,7 @@
 
 	<!--  Reconhecer anotacao de @Transactional -->
 	<tx:annotation-driven/>
-	<context:component-scan base-package="br.com.fabricadeprogramador.dao"/>
+	<context:component-scan base-package="br.com.fabricadeprogramador"/>
 	
 	<beans>
 	

@@ -13,11 +13,24 @@
  <servlet>
  	<servlet-name>Faces Servlet</servlet-name>
  	<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+ 
  </servlet>
   
   <servlet-mapping>
   		<servlet-name>Faces Servlet</servlet-name>
-  		<url-pattern>/faces/*</url-pattern>
+  		<url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+  <!--  Carrando Spring no contexto Web -->
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>/WEB-INF/springbeans.xml</param-value>
+  </context-param>
+  <listener>
+  	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+ 
   
 </web-app>
