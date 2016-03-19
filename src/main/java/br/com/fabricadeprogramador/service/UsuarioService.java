@@ -1,17 +1,19 @@
 package br.com.fabricadeprogramador.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import br.com.fabricadeprogramador.dao.DAO;
 import br.com.fabricadeprogramador.dao.DAOException;
-import br.com.fabricadeprogramador.dao.UsuarioDAO;
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 @Service
 public class UsuarioService {
 
 	@Autowired
-	private UsuarioDAO usuarioDAO;
+	@Qualifier("usuarioDAO")
+	private DAO usuarioDAO;
 	
 	public void salvar(Usuario usuario) throws ServiceException{
 		

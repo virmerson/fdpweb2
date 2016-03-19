@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fabricadeprogramador.entidade.Usuario;
 
-@Repository
+@Repository(value="usuarioDAO")
 public class UsuarioDAO implements DAO<Usuario> {
 	
 	@PersistenceContext
