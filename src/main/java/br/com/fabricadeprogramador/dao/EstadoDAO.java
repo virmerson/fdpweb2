@@ -15,11 +15,11 @@ public class EstadoDAO implements DAO<Estado> {
 		em = EmFactory.getEntityManager();
 	}
 	
-	public void salvar(Estado estado){
+	public Estado salvar(Estado estado){
 		em.getTransaction().begin();
-		em.merge(estado);
+		estado = em.merge(estado);
 		em.getTransaction().commit();
-		
+		return estado;
 	}
 	
 	public void excluir (Estado estado){

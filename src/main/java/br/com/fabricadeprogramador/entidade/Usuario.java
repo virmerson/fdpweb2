@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +22,10 @@ public class Usuario {
 	private String login;
 	@Column(nullable=false, length=10)
 	private String senha;
+	
+	@JoinColumn
+	@ManyToOne
+	private Perfil perfil;
 	
 	public Usuario() {
 		
