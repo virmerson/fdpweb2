@@ -1,6 +1,11 @@
 package br.com.fabricadeprogramador.controller;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,23 +17,46 @@ import br.com.fabricadeprogramador.service.UsuarioService;
 @ManagedBean(name="usuarioController")
 @Controller(value="usuarioController")
 public class UsuarioController {
+	
+	private List<Usuario> usuarios ;
+	
 	private Usuario usuario= new Usuario();
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@PostConstruct
+	public void init() {
+		usuarios = usuarioService.buscarTodos();
+	}
 	
 	public void salvar(){
 		//
 		try {
-			usuarioService.salvar(usuario);
-			System.out.println("Salvando usuario:" + usuario.getNome() +" "+ usuario.getLogin() + " "+ usuario.getSenha() );
-			
+			usuario = usuarioService.salvar(usuario);
+			if (usuario.getId()==null){
+				usuarios.add(usuario);
+			}
+			usuario =  new Usuario();
+			MensagemUtil.mensagemSalvoSucesso();
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			MensagemUtil.mensagemErro(e.getMessage());
 		}
 	}
 
+	public void excluir(Usuario usuario){
+		try{
+			usuarioService.excluir(usuario);
+			usuarios.remove(usuario);
+			MensagemUtil.mensagemExcluidoSucesso();
+		}catch(Exception e){
+			MensagemUtil.mensagemErro(e.getMessage());
+		}
+	}
+	
+	public void editar(Usuario usuario){
+		this.usuario=usuario;
+	}
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -36,7 +64,18 @@ public class UsuarioController {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
 	
-	
+	public void excluir(){
+		
+		
+	}
 	
 }

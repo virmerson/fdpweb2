@@ -3,15 +3,10 @@ package br.com.fabricadeprogramador.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fabricadeprogramador.entidade.Usuario;
@@ -27,9 +22,9 @@ public class UsuarioDAO implements DAO<Usuario> {
 	}
 	
 	@Transactional
-	public void salvar(Usuario usuario) throws DAOException{
+	public Usuario salvar(Usuario usuario) throws DAOException{
 		try{
-			em.merge(usuario);
+			return em.merge(usuario);
 		}catch (Exception e ){
 			//Lancando exception encapsulando a causa
 			throw new DAOException(e);
@@ -38,6 +33,8 @@ public class UsuarioDAO implements DAO<Usuario> {
 	
 	@Transactional
 	public void excluir (Usuario usuario){
+		//Tornando Managed
+		usuario = em.find(Usuario.class, usuario.getId());
 		em.remove(usuario);
 	}
 	

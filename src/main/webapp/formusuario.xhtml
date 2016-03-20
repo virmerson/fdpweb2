@@ -1,25 +1,70 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
-	
-	<h:head>
-	
-	</h:head>
-	<h:body>
-		<h:form>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+
+</h:head>
+<h:body>
+
+	<h:messages />
+	<h:form>
 			Nome:
-			<h:inputText value="#{usuarioController.usuario.nome}"/>
+			<h:inputText value="#{usuarioController.usuario.nome}" />
 			
 			Login:
-			<h:inputText value="#{usuarioController.usuario.login}"/>
+			<h:inputText value="#{usuarioController.usuario.login}" />
 			
 			Senha:
-			<h:inputText value="#{usuarioController.usuario.senha}"/>
+			<h:inputText value="#{usuarioController.usuario.senha}" />
+
+		<h:commandButton actionListener="#{usuarioController.salvar()}"
+			value="Salvar" />
+
+	</h:form>
+
+
+	<h:form>
+		<h:dataTable value="#{usuarioController.usuarios}" var="u" border="1">
+
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				<h:outputText value="#{u.id}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{u.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Login</f:facet>
+				<h:outputText value="#{u.login}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Senha</f:facet>
+				<h:outputText value="#{u.senha}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">Ações</f:facet>
+				<h:commandButton actionListener="#{usuarioController.excluir(u)}"
+					value="Excluir" />
+					
+					<h:commandButton actionListener="#{usuarioController.editar(u)}"
+					value="Editar" />
+			</h:column>
 			
-			<h:commandButton actionListener="#{usuarioController.salvar()}" value="Salvar"/>
-		
-		</h:form>
-	</h:body>
+			
+			
+
+
+		</h:dataTable>
+	</h:form>
+
+</h:body>
 </html>
