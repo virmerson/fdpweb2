@@ -23,8 +23,8 @@ public class Usuario {
 	@Column(nullable=false, length=10)
 	private String senha;
 	
-	@JoinColumn
-	@ManyToOne
+	@JoinColumn //FK
+	@ManyToOne //Muitos usuarios para 1 perfil
 	private Perfil perfil;
 	
 	public Usuario() {
@@ -103,6 +103,14 @@ public class Usuario {
 		} else if (!senha.equals(other.senha))
 			return false;
 		return true;
+	}
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 	
 	

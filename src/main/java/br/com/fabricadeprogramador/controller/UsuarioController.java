@@ -32,9 +32,12 @@ public class UsuarioController {
 	public void salvar(){
 		//
 		try {
-			usuario = usuarioService.salvar(usuario);
+			
 			if (usuario.getId()==null){
+				usuario = usuarioService.salvar(usuario);
 				usuarios.add(usuario);
+			}else {
+				usuarioService.salvar(usuario);
 			}
 			usuario =  new Usuario();
 			MensagemUtil.mensagemSalvoSucesso();
@@ -73,9 +76,6 @@ public class UsuarioController {
 		this.usuarios = usuarios;
 	}
 	
-	public void excluir(){
-		
-		
-	}
+	
 	
 }

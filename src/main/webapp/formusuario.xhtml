@@ -11,6 +11,13 @@
 
 	<h:messages />
 	<h:form>
+			Perfil:
+			<h:selectOneMenu value="#{usuarioController.usuario.perfil}" converter="#{perfilConverter}">
+				<f:selectItem itemValue="" itemLabel="Selecione" noSelectionOption="true" />
+				<f:selectItems value="#{perfilController.perfils}" var="p" itemLabel="#{p.descricao}"/>
+				
+			</h:selectOneMenu>
+				
 			Nome:
 			<h:inputText value="#{usuarioController.usuario.nome}" />
 			
@@ -49,6 +56,11 @@
 				<h:outputText value="#{u.senha}" />
 			</h:column>
 
+
+			<h:column>
+				<f:facet name="header">Perfil</f:facet>
+				<h:outputText value="#{u.perfil.descricao}" />
+			</h:column>
 
 			<h:column>
 				<f:facet name="header">Ações</f:facet>
