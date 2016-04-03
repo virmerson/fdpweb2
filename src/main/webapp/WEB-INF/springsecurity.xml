@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/admin/*"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/admin/**"
+			access="hasRole('ROLE_ADMIN')" />
+
+		<security:form-login authentication-failure-url="/login.xhtml?erro=true"
+			default-target-url="/admin/index.xhtml" login-page="/login.xhtml"
+			username-parameter="login" password-parameter="senha" />
+
+	</security:http>
+	<!-- users-by-username-query - pega o usuario do banco , authorities-by-username-query 
+		- regra do banco -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="ds1"
+				users-by-username-query="select login, senha, ativo from
+usuario where login=?"
+				authorities-by-username-query="select u.login, p.descricao
+from usuario u, perfil p where u.perfil_id=p.id and login=?" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

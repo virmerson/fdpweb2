@@ -27,6 +27,8 @@ public class Usuario {
 	@ManyToOne //Muitos usuarios para 1 perfil
 	private Perfil perfil;
 	
+	private Boolean ativo;
+	
 	public Usuario() {
 		
 	}
@@ -111,6 +113,14 @@ public class Usuario {
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 	
 	
