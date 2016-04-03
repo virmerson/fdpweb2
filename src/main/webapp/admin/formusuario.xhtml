@@ -2,80 +2,71 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"   >
 
 <h:head>
 
 </h:head>
 <h:body>
 
-	<h:messages />
+	<ui:include src="menu.xhtml" />
 	<h:form>
+	
+	<p:messages />
 			Perfil:
-			<h:selectOneMenu value="#{usuarioController.usuario.perfil}" converter="#{perfilConverter}">
+			<p:selectOneMenu value="#{usuarioController.usuario.perfil}" converter="#{perfilConverter}">
 				<f:selectItem itemValue="" itemLabel="Selecione" noSelectionOption="true" />
 				<f:selectItems value="#{perfilController.perfils}" var="p" itemLabel="#{p.descricao}"/>
 				
-			</h:selectOneMenu>
+			</p:selectOneMenu>
 				
 			Nome:
-			<h:inputText value="#{usuarioController.usuario.nome}" />
+			<p:inputText value="#{usuarioController.usuario.nome}" />
 			
 			Login:
-			<h:inputText value="#{usuarioController.usuario.login}" />
+			<p:inputText value="#{usuarioController.usuario.login}" />
 			
 			Senha:
-			<h:inputText value="#{usuarioController.usuario.senha}" />
+			<p:inputText value="#{usuarioController.usuario.senha}" />
 
-		<h:commandButton actionListener="#{usuarioController.salvar()}"
-			value="Salvar" />
-
-	</h:form>
+		<p:commandButton actionListener="#{usuarioController.salvar()}"
+			value="Salvar" update="@form" />
 
 
-	<h:form>
-		<h:dataTable value="#{usuarioController.usuarios}" var="u" border="1">
+		<p:dataTable value="#{usuarioController.usuarios}" var="u" border="1">
 
-			<h:column>
-				<f:facet name="header">Id</f:facet>
+			<p:column headerText="ID">
 				<h:outputText value="#{u.id}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
+			<p:column headerText="Nome">
 				<h:outputText value="#{u.nome}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
-				<f:facet name="header">Login</f:facet>
+			<p:column headerText="Login">
 				<h:outputText value="#{u.login}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
-				<f:facet name="header">Senha</f:facet>
+			<p:column headerText="Senha">
 				<h:outputText value="#{u.senha}" />
-			</h:column>
+			</p:column>
 
 
-			<h:column>
-				<f:facet name="header">Perfil</f:facet>
+			<p:column headerText="Perfil">
 				<h:outputText value="#{u.perfil.descricao}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
-				<f:facet name="header">Ações</f:facet>
-				<h:commandButton actionListener="#{usuarioController.excluir(u)}"
+			<p:column headerText="Ações">
+				<p:commandButton actionListener="#{usuarioController.excluir(u)}"
 					value="Excluir" />
 					
-					<h:commandButton actionListener="#{usuarioController.editar(u)}"
-					value="Editar" />
-			</h:column>
-			
-			
-			
+					<p:commandButton actionListener="#{usuarioController.editar(u)}"
+					value="Editar" update="@form" />
+			</p:column>
 
 
-		</h:dataTable>
+		</p:dataTable>
 	</h:form>
 
 </h:body>

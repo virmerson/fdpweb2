@@ -12,7 +12,7 @@
 			access="hasRole('ROLE_ADMIN')" />
 
 		<security:form-login authentication-failure-url="/login.xhtml?erro=true"
-			default-target-url="/admin/index.xhtml" login-page="/login.xhtml"
+			default-target-url="/admin/index.xhtml" login-page="/login.xhtml" 
 			username-parameter="login" password-parameter="senha" />
 
 	</security:http>
